@@ -10,6 +10,9 @@ import SessionsHistory from "./pages/SessionsHistory";
 import AIAssistant from "./pages/AIAssistant";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
+import ParentLogin from "./pages/auth/ParentLogin";
+import ParentDashboard from "./pages/parent/Dashboard";
 
 // Install framer-motion
 import { AnimatePresence } from "framer-motion";
@@ -24,11 +27,20 @@ const App = () => (
       <BrowserRouter>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            {/* Landing Page and Auth Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/parent-login" element={<ParentLogin />} />
+            
+            {/* Parent Dashboard Routes */}
+            <Route path="/parent/dashboard" element={<ParentDashboard />} />
+
+            {/* Therapist Dashboard Routes */}
+            <Route path="/therapist/dashboard" element={<Dashboard />} />
             <Route path="/children" element={<ChildrenList />} />
             <Route path="/sessions" element={<SessionsHistory />} />
             <Route path="/ai-assistant" element={<AIAssistant />} />
             <Route path="/profile" element={<Profile />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
