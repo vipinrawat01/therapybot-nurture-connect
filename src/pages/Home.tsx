@@ -1,67 +1,89 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Users, UserCheck, UserCog, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import PortalCard from "@/components/landing/PortalCard";
+import { Brain, Users, UserCog, Shield } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container flex h-16 items-center px-4 max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-violet-500 text-transparent bg-clip-text">
-            AI-Driven Therapy Management
-          </h1>
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-background/80">
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <motion.div
+            initial={{ rotate: -10, scale: 0.9 }}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Brain className="h-8 w-8 text-primary" />
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-2xl font-bold"
+          >
+            TherapyAI
+          </motion.h1>
         </div>
+        <Button variant="outline" size="sm">
+          Contact Support
+        </Button>
       </header>
 
-      <main className="container py-12 px-4 max-w-6xl mx-auto flex-1 flex flex-col">
+      {/* Main content */}
+      <main className="flex-grow container mx-auto px-4 py-12 flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-10 text-center"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Welcome to AI-Driven Therapy Management System
-          </h1>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
-            Please select your portal to access the system. Each portal is designed for specific roles 
-            with customized dashboards and functionalities.
+          <h2 className="text-4xl font-bold tracking-tight mb-4">
+            AI-Driven Therapy Management System
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Intelligent support for therapists, supervisors, parents, and administrators
+            to enhance therapy outcomes for children.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          <PortalCard 
-            title="Parent Portal" 
-            description="Monitor your child's progress, access home activities, and communicate with supervisors."
-            icon={<Users className="h-6 w-6" />}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+          <PortalCard
+            title="Parent Portal"
+            description="Track your child's progress, access home activities, and communicate with therapists."
+            icon={<Users className="h-6 w-6 text-white" />}
             to="/parent-login"
-            color="primary"
+            color="blue"
             delay={1}
             showRegister={true}
           />
-          <PortalCard 
-            title="Therapist Portal" 
-            description="Manage therapy sessions, track children's progress, and receive AI recommendations."
-            icon={<UserCheck className="h-6 w-6" />}
+          
+          <PortalCard
+            title="Therapist Portal"
+            description="Log therapy sessions, track progress, and get AI recommendations for your patients."
+            icon={<Brain className="h-6 w-6 text-white" />}
             to="/therapist-login"
-            color="blue"
+            color="primary"
             delay={2}
             showRegister={true}
           />
-          <PortalCard 
-            title="Supervisor Portal" 
-            description="Monitor therapy quality, review session logs, and approve AI recommendations."
-            icon={<UserCog className="h-6 w-6" />}
+          
+          <PortalCard
+            title="Supervisor Portal"
+            description="Monitor therapists, approve AI recommendations, and generate progress reports."
+            icon={<UserCog className="h-6 w-6 text-white" />}
             to="/supervisor-login"
             color="green"
             delay={3}
           />
-          <PortalCard 
-            title="Admin Portal" 
-            description="Manage users, system settings, and access comprehensive analytics."
-            icon={<Settings className="h-6 w-6" />}
+          
+          <PortalCard
+            title="Admin Portal"
+            description="Manage users, roles, and system settings for the entire platform."
+            icon={<Shield className="h-6 w-6 text-white" />}
             to="/admin-login"
             color="orange"
             delay={4}
@@ -69,9 +91,23 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t border-border py-6">
-        <div className="container px-4 max-w-6xl mx-auto text-center text-sm text-muted-foreground">
-          <p>© 2023 AI-Driven Therapy Management System. All rights reserved.</p>
+      {/* Footer */}
+      <footer className="container mx-auto px-4 py-6 border-t border-border">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            © 2023 TherapyAI. All rights reserved.
+          </p>
+          <div className="flex gap-6">
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Terms of Service
+            </Link>
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Privacy Policy
+            </Link>
+            <Link to="#" className="text-sm text-muted-foreground hover:text-foreground">
+              Contact
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
